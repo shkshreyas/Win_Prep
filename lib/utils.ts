@@ -45,3 +45,13 @@ export const getRandomInterviewCover = () => {
   const randomIndex = Math.floor(Math.random() * interviewCovers.length);
   return `/covers${interviewCovers[randomIndex]}`;
 };
+
+export const getCompanyLogo = (name?: string) => {
+  if (!name) return getRandomInterviewCover();
+  const n = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const baseNames = interviewCovers.map((p) =>
+    p.replace(/^\//, "").replace(/\.png$/i, "")
+  );
+  const found = baseNames.find((b) => n.includes(b) || b.includes(n));
+  return found ? `/covers/${found}.png` : getRandomInterviewCover();
+};

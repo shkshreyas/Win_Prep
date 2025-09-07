@@ -5,24 +5,24 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-success-100: #49de50;
-  --color-success-200: #42c748;
-  --color-destructive-100: #f75353;
-  --color-destructive-200: #c44141;
+  --color-success-100: #31f59a;
+  --color-success-200: #18d67f;
+  --color-destructive-100: #ff5b7e;
+  --color-destructive-200: #d84361;
 
-  --color-primary-100: #dddfff;
-  --color-primary-200: #cac5fe;
+  --color-primary-100: #b2f5ff;
+  --color-primary-200: #6be3ff;
 
-  --color-light-100: #d6e0ff;
-  --color-light-400: #6870a6;
-  --color-light-600: #4f557d;
-  --color-light-800: #24273a;
+  --color-light-100: #e0f1ff;
+  --color-light-400: #8aa3c9;
+  --color-light-600: #6b7ba6;
+  --color-light-800: #25293f;
 
-  --color-dark-100: #020408;
-  --color-dark-200: #27282f;
-  --color-dark-300: #242633;
+  --color-dark-100: #07090f;
+  --color-dark-200: #0d1220;
+  --color-dark-300: #0f1526;
 
-  --font-mona-sans: "Mona Sans", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
 
   --bg-pattern: url("/pattern.png");
 }
@@ -35,18 +35,18 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --primary: #6be3ff;
+  --primary-foreground: #0b0f1a;
+  --secondary: #0f1526;
+  --secondary-foreground: #e6f2ff;
+  --muted: #0d1220;
+  --muted-foreground: #a7b6d9;
+  --accent: #111a33;
+  --accent-foreground: #dff3ff;
+  --destructive: #ff5b7e;
+  --border: #1b2540;
+  --input: #1b2540;
+  --ring: #6be3ff;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -142,7 +142,7 @@
     @apply bg-background text-foreground;
   }
   p {
-    @apply text-light-100;
+    @apply text-foreground;
   }
   h2 {
     @apply text-3xl font-semibold;
@@ -154,7 +154,7 @@
     @apply list-disc list-inside;
   }
   li {
-    @apply text-light-100;
+    @apply text-foreground;
   }
 }
 
@@ -286,7 +286,7 @@
   }
 
   .card-interview {
-    @apply dark-gradient rounded-2xl min-h-full flex flex-col p-6 relative overflow-hidden gap-10 justify-between;
+    @apply bg-white dark:dark-gradient rounded-2xl min-h-full flex flex-col p-6 relative overflow-hidden gap-10 justify-between;
 
     .badge-text {
       @apply text-sm font-semibold capitalize;
