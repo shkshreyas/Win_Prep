@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import DisplayTechIcons from "./DisplayTechIcons";
 
-import { cn, getCompanyLogo, getRandomInterviewCover } from "@/lib/utils";
+import { cn, getCompanyLogo } from "@/lib/utils";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
 const InterviewCard = async ({

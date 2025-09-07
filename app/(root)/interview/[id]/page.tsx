@@ -2,30 +2,40 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 import Interview from "@/components/Interview";
-import { getCompanyLogo, getRandomInterviewCover } from "@/lib/utils";
+import VideoRoom from "@/components/VideoRoom";
+import { getCompanyLogo } from "@/lib/utils";
+import DisplayTechIcons from "@/components/DisplayTechIcons";
 
 import {
   getFeedbackByInterviewId,
   getInterviewById,
 } from "@/lib/actions/general.action";
 import { getCurrentUser } from "@/lib/actions/auth.action";
-import DisplayTechIcons from "@/components/DisplayTechIcons";
+
+interface RouteParams {
+  params: {
+    id: string;
+  };
+}
 
 const InterviewDetails = async ({ params }: RouteParams) => {
-  const { id } = await params;
+  const { id } = params;
 
   const user = await getCurrentUser();
+  if (!user) redirect("/sign-in");
 
   const interview = await getInterviewById(id);
   if (!interview) redirect("/");
 
-  const feedback = await getFeedbackByInterviewId({
+  const _feedback = await getFeedbackByInterviewId({
     interviewId: id,
-    userId: user?.id!,
+    userId: user.id,
   });
 
+  const roomName = `interview-${id}`;
+
   return (
-    <>
+    <div className="space-y-6">
       <div className="flex flex-row gap-4 justify-between">
         <div className="flex flex-row gap-4 items-center max-sm:flex-col">
           <div className="flex flex-row gap-4 items-center">
@@ -50,13 +60,21 @@ const InterviewDetails = async ({ params }: RouteParams) => {
         </p>
       </div>
 
-      <Interview
-        userName={user?.name || "Guest"}
-        userId={user?.id}
-        interviewId={id}
-        questions={interview.questions}
-      />
-    </>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="w-full aspect-video bg-dark-200 rounded-lg overflow-hidden">
+          <VideoRoom userName={user.name || "Candidate"} roomName={roomName} />
+        </div>
+
+        <div className="w-full">
+          <Interview
+            userName={user.name || "Guest"}
+            userId={user.id}
+            interviewId={id}
+            questions={interview.questions}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 
